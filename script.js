@@ -5,19 +5,43 @@
 
 
 // Funzione per trovare ed eliminare il "." e la ","
+function deletePunctuation(word){
+
+  // Splitto la parola in un array
+  word = word.split("");
+
+  console.log("Array diviso per cercare punteggiatura", word);
+
+
+  for (var i = 0; i < word.length; i++) {
+
+    if(word[i] === ",") {
+
+      word[i] = "";
+
+    }
+  }
+  word = word.join("");
+
+
+  console.log("Parola senza la virgola: ", word);
+
+  return word;
+
+
+};
 
 
 
-// Funzione per sostituire ogni carattere con una "x"
+// Funzione per sostituire ogni carattere con una un parametro che passeremo come stringa alla funzione
 function replaceCharacter(word, replaceWhit){
-  // replaceWhit => un parametro stringa da passare alla funzione come tale
+// replaceWhit => un parametro stringa da passare alla funzione come tale
 
   // Splitto la parola in un array
   word = word.split("");
   console.log("Parola splittata", word);
 
   for (var i = 0; i < word.length; i++) {
-
 
       word[i] = replaceWhit;
   }
@@ -49,8 +73,35 @@ function censuratore(text, badwordList){
     //Ciclo all'interno dell'array con il mio testo input splittato
     for (var i = 0; i < textTrim.length; i++) {
 
+
+
+
+      // // Splitto la parola in un array per cercare la virgola e il punto ed eliminarla
+      // var parolaSplit = textTrim[i].split("");
+      //
+      // console.log("Array diviso per cercare punteggiatura",parolaSplit);
+      //
+      // // Ciclo all'interno della parola per cercare e sostituire la virgola ed il punto
+      // for (var i = 0; i < parolaSplit.length; i++) {
+      //
+      //   if(parolaSplit[i] === "," || parolaSplit[i] === ".") {
+      //
+      //     parolaSplit[i] = "";
+      //
+      //   }
+      // }
+      //
+      // // Restituzione della stringa senza la punteggiatura
+      // textTrim[i] = parolaSplit.join("");
+      //
+      // console.log("Parola senza la virgola: ", textTrim[i]);
+
+
+
+
+
       // Se nell'array delle parole da censurare, compare un item dell'array creato dal testo spilittato inserito dall'utente,
-      // allora questo item viene sostituito con una stringa "xxx"
+      // allora questo item viene sostituito con una stringa "x" a seconda della lunghezza della parola
       if (badwordList.includes(textTrim[i])) {
 
         //Funzione per analizzare la parola e sostituire i caratteri con un valore che passa il programmatore alla funzione
@@ -94,7 +145,8 @@ listaProibita = [
   "massa",
   "nunc",
   "ullamcorper",
-  "vehicula"
+  "vehicula",
+  "pretium"
 ]
 
 // Input per il controllo delle parole da censurare
