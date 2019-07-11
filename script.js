@@ -2,7 +2,7 @@
 // - Restituisce il testo con xxx al posto delle parole censurate.
 // - Stampa un “badword index” calcolato come il numero di parole censurate su il numero di parole totali
 
-var input, badwordList;
+var input, listaProibita;
 
 
 // Lista Parole da censurare
@@ -66,5 +66,8 @@ function censuratore(text, badwordList){
     //Restituzione dell'array con le parole sostituite e censurate;
     console.log(text);
 }
+
+
+
 
 censuratore(input, listaProibita);
