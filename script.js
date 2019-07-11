@@ -33,10 +33,13 @@ listaProibita = [
 input = prompt("inserisci il testo da controllare");
 
 
+
+//Funzione censuratrice di parole proibite
 function censuratore(text, badwordList){
 
     var textTrim;
 
+    //Trasformo tutto in maiuscolo per permettere un facile controllo
     for (var i = 0; i < badwordList.length; i++) {
       badwordList[i] = badwordList[i].toUpperCase();
     }
