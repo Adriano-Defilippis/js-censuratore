@@ -61,7 +61,8 @@ function censuratore(text, badwordList){
 
     // Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
     // .join(), transforma l'array in una stringa
-    text = textTrim.join(" ");
+    //.toLowerCase(), rende dinuvo tutta la stringa in minuscolo
+    text = textTrim.join(" ").toLowerCase();
 
     //Restituzione dell'array con le parole sostituite e censurate;
     console.log(text);
@@ -69,5 +70,5 @@ function censuratore(text, badwordList){
 
 
 
-
+// Esecuzine del codice
 censuratore(input, listaProibita);
