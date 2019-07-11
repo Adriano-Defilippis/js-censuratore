@@ -44,12 +44,12 @@ function censuratore(text, badwordList){
       badwordList[i] = badwordList[i].toUpperCase();
     }
 
-    console.log(badwordList);
-    console.log(text);
+    console.log("Array delle parole proibite: ", badwordList);
+    console.log("Input del testo da controllare " ,text);
 
     // Trasformo il testo inserito in un Array di stringhe, dove ogni stringa è una parole dell'input inserito
     textTrim = text.toUpperCase().split(" ");
-    console.log(textTrim);
+    console.log("Teseto diviso per parola ",textTrim);
 
     //Ciclo all'interno dell'array con il mio testo input splittato
     for (var i = 0; i < textTrim.length; i++) {
@@ -68,7 +68,7 @@ function censuratore(text, badwordList){
     text = textTrim.join(" ").toLowerCase();
 
     //Restituzione dell'array con le parole sostituite e censurate;
-    console.log(text);
+    console.log("Array parole censurate:", text);
 }
 
 
