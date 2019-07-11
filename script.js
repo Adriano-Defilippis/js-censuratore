@@ -10,6 +10,7 @@
 
 // Funzione per sostituire ogni carattere con una "x"
 function replaceCharacter(word, replaceWhit){
+  // replaceWhit => un parametro stringa da passare alla funzione come tale
 
   // Splitto la parola in un array
   word = word.split("");
@@ -52,7 +53,7 @@ function censuratore(text, badwordList){
       // allora questo item viene sostituito con una stringa "xxx"
       if (badwordList.includes(textTrim[i])) {
 
-
+        //Funzione per analizzare la parola e sostituire i caratteri con un valore che passa il programmatore alla funzione
         textTrim[i] = replaceCharacter(textTrim[i], "x");
       }
     }
