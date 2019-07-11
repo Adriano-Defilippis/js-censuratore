@@ -2,11 +2,11 @@
 // - Restituisce il testo con xxx al posto delle parole censurate.
 // - Stampa un “badword index” calcolato come il numero di parole censurate su il numero di parole totali
 
-var text, textTrim, badwordList;
+var input, badwordList;
 
 
 // Lista Parole da censurare
-badwordList = [
+listaProibita = [
   "lorem",
   "ipsum",
   "dolor",
@@ -30,37 +30,41 @@ badwordList = [
 ]
 
 // Input per il controllo delle parole da censurare
-text = prompt("inserisci il testo da controllare");
+input = prompt("inserisci il testo da controllare");
 
-for (var i = 0; i < badwordList.length; i++) {
-  badwordList[i] = badwordList[i].toUpperCase();
 
+function censuratore(text, badwordList){
+
+    var textTrim;
+
+    for (var i = 0; i < badwordList.length; i++) {
+      badwordList[i] = badwordList[i].toUpperCase();
+    }
+
+    console.log(badwordList);
+    console.log(text);
+
+    // Trasformo il testo inserito in un Array di stringhe, dove ogni stringa è una parole dell'input inserito
+    textTrim = text.toUpperCase().split(" ");
+    console.log(textTrim);
+
+    //Ciclo all'interno dell'array con il mio testo input splittato
+    for (var i = 0; i < textTrim.length; i++) {
+
+      // Se nell'array delle parole da censurare, compare un item dell'array creato dal testo spilittato inserito dall'utente,
+      // allora questo item viene sostituito con una stringa "xxx"
+      if (badwordList.includes(textTrim[i])) {
+
+        textTrim[i] = "xxxxx";
+      }
+    }
+
+    // Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
+    // .join(), transforma l'array in una stringa
+    text = textTrim.join(" ");
+
+    //Restituzione dell'array con le parole sostituite e censurate;
+    console.log(text);
 }
 
-
-console.log(badwordList);
-console.log(text);
-
-
-
-// Trasformo il testo inserito in un Array di stringhe, dove ogni stringa è una parole dell'input inserito
-textTrim = text.toUpperCase().split(" ");
-console.log(textTrim);
-
-
-//Ciclo all'interno dell'array con il mio testo input splittato
-for (var i = 0; i < textTrim.length; i++) {
-
-  // Se nell'array delle parole da censurare, compare un item dell'array creato dal testo spilittato inserito dall'utente,
-  // allora questo item viene sostituito con una stringa "xxx"
-  if (badwordList.includes(textTrim[i])) {
-    textTrim[i] = "xxx";
-  }
-}
-
-// Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
-// .join(), transforma l'array in una stringa
-text = textTrim.join();
-
-//Restituzione dell'array con le parole sostituite e censurate;
-console.log(text);
+censuratore(input, listaProibita);
