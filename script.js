@@ -3,13 +3,27 @@
 // - Stampa un “badword index” calcolato come il numero di parole censurate su il numero di parole totali
 
 
+
 // Funzione per trovare ed eliminare il "." e la ","
-function deletePunctuation(word){
 
+
+
+// Funzione per sostituire ogni carattere con una "x"
+function replaceCharacter(word, replaceWhit){
+
+  // Splitto la parola in un array
   word = word.split("");
-
   console.log("Parola splittata", word);
 
+  for (var i = 0; i < word.length; i++) {
+
+
+      word[i] = replaceWhit;
+  }
+  console.log("Array parola con x al posto delle lettere ",word);
+  word = word.join("");
+  console.log("Stringa Parola con x al posto delle lettere ",word);
+  return word;
 };
 
 
@@ -38,8 +52,8 @@ function censuratore(text, badwordList){
       // allora questo item viene sostituito con una stringa "xxx"
       if (badwordList.includes(textTrim[i])) {
 
-        // deletePunctuation(textTrim[i]);
-        textTrim[i] = "xxxxx";
+
+        textTrim[i] = replaceCharacter(textTrim[i], "x");
       }
     }
 
