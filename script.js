@@ -128,10 +128,23 @@ var input, listaProibita;
 listaProibita = [];
 
 
-for (var i = 0; i < 20; i++) {
-  paroleinput = prompt("inserisci una parola da censurare");
-  listaProibita.push(paroleinput);
+// Con il ciclo permetto l'inserimento di 20 parole da ricercare e censuratore
+// for (var i = 0; i < 10; i++) {
+//   paroleinput = prompt("inserisci una parola da censurare");
+//   listaProibita.push(paroleinput);
+//
+// }
 
+var penetrazion = true;
+
+while (penetrazion == true) {
+
+   paroleinput = prompt("inserisci una parola da censurare");
+   listaProibita.push(paroleinput);
+   var ask = prompt("Le parole da censurare sono abbastanza? Y/N");
+   if (ask == "y") {
+     penetrazion = false;
+   }
 }
 
 console.log(listaProibita);
