@@ -125,24 +125,29 @@ listaProibita = [];
 // }
 
 var penetrazion = true;
+
 // Con il ciclo while permetto l'inserimento di parole da ricercare e censuratore, a seconda di quante ne vuole inserire s
 while (penetrazion == true) {
 
    paroleinput = prompt("inserisci una parola da censurare");
 
+   // Se l'input inserito è vuoto o non definito lo script si blocca
    if ((paroleinput == "") || (paroleinput == "undefined")) {
 
      alert("Prego inserire del testo.");
 
    }else{
 
+     // Pusho l'input nell' Array vuoto per le parole proibite
      listaProibita.push(paroleinput);
-     var ask = prompt("Le parole da censurare sono abbastanza? Y/N");
+
+     // Chiedo all'utente se desidera terminare l'immissione delle parole da censurare;
+     var ask = prompt("Le parole da censurare sono abbastanza? Y/N").toLowerCase();
      if (ask == "y") {
        penetrazion = false;
 
      }
-   }
+  }
 }
 
 console.log(listaProibita);
@@ -158,15 +163,9 @@ while ((input == "") || (input == "undefined")) {
 
 }
 
+  // Funzione con parametri che ci restituisce un testo censurato 
   censuratore(input, listaProibita);
-  console.log(input.length > 0);
 
-
-
-
-
-
-// ss
 
 
 
