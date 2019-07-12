@@ -3,6 +3,24 @@
 // - Stampa un “badword index” calcolato come il numero di parole censurate su il numero di parole totali
 
 
+//funzione accessoria per togliere la punteggiatura da una parola senza usare regex
+//accetta una stringa di testo e un array di caratteri
+function removeChar(str, characters){
+    // ciclo per controllare lettera per lettera
+    for (var i = 0; i < str.length; i++) {
+      //se trovo corrispondenza con l'array di caratteri rimuovo
+       if(characters.indexOf(str[i]) > -1){
+         str = str.replace(str[i], '');
+       }
+    }
+
+  //ritorno la stringa
+  return str;
+};
+
+
+
+
 
 // Funzione per sostituire ogni carattere con una un parametro che passeremo come stringa alla funzione
 function replaceCharacter(word, replaceWhit){
@@ -10,15 +28,13 @@ function replaceCharacter(word, replaceWhit){
 
   // Splitto la parola in un array
   word = word.split("");
-  console.log("Parola splittata", word);
+  console.log("Parola splittata per sostituzione lettere", word);
 
   for (var i = 0; i < word.length; i++) {
 
       word[i] = replaceWhit;
   }
-  console.log("Array parola con x al posto delle lettere ",word);
   word = word.join("");
-  console.log("Stringa Parola con x al posto delle lettere ",word);
   return word;
 };
 
@@ -44,39 +60,36 @@ function censuratore(text, badwordList){
 
     // Trasformo il testo inserito in un Array di stringhe, dove ogni stringa è una parole dell'input inserito
     textTrim = text.toUpperCase().split(" ");
-    console.log("Testo diviso per parola ",textTrim);
-
 
     //Ciclo all'interno dell'array con il mio testo input splittato
     for (var i = 0; i < textTrim.length; i++) {
+
       var badChar = [',','.',';',':','?','!'];
-      tempStr = textTrim[i];
 
-      for (var i = 0; i < tempStr.length; i++) {
-        console.log(tempStr[i]);
+      //creo una stringa temporanea senza quei caratteri
+      var tmpStr = removeChar(textTrim[i], badChar);
 
-        if(badChar.indexOf(tempStr[i]) > -1){
-          tempStr = tempStr.replace(tempStr[i], '');
-        }
-      }
-      textTrim[i] = tempStr;
 
 
 
       // Se nell'array delle parole da censurare, compare un item dell'array creato dal testo spilittato inserito dall'utente,
       // allora questo item viene sostituito con una stringa "x" a seconda della lunghezza della parola
-      if (badwordList.includes(textTrim[i])) {
+      if (badwordList.includes(tmpStr)) {
 
-        contatoreCensura = contatoreCensura + 1;
-        //Funzione per analizzare la parola e sostituire i caratteri con un valore che passa il programmatore alla funzione
-        textTrim[i] = replaceCharacter(textTrim[i], "x");
+
+        //mantengo la punteggiature se presente, e sostituisco la str con la funzione per sosituire la x ad ogni lettera
+        textTrim[i] = textTrim[i].replace(tmpStr, replaceCharacter(tmpStr, "x"));
+
+        contatoreCensura ++;
+
 
       }
 
 
     }
 
-    mediaCensura = contatoreCensura/textTrim.length;
+    // Metto nella variabile la percetuale di parola censurate in base al testo controllato
+    mediaCensura = (contatoreCensura / textTrim.length) * 100;
 
     // Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
     // .join(), transforma l'array in una stringa
@@ -97,7 +110,7 @@ function censuratore(text, badwordList){
 
 
 // Esecuzine del codice
-var input, listaProibita, badWordIndex;
+var input, listaProibita, badWordIndex, paroleinput;
 
 
 // Lista Parole da censurare
@@ -116,21 +129,49 @@ var penetrazion = true;
 while (penetrazion == true) {
 
    paroleinput = prompt("inserisci una parola da censurare");
-   listaProibita.push(paroleinput);
-   var ask = prompt("Le parole da censurare sono abbastanza? Y/N");
-   if (ask == "y") {
-     penetrazion = false;
+
+   if ((paroleinput == "") || (paroleinput == "undefined")) {
+
+     alert("Prego inserire del testo.");
+
+   }else{
+
+     listaProibita.push(paroleinput);
+     var ask = prompt("Le parole da censurare sono abbastanza? Y/N");
+     if (ask == "y") {
+       penetrazion = false;
+
+     }
    }
 }
 
 console.log(listaProibita);
+
 // Input per il controllo delle parole da censurare
 input = prompt("inserisci il testo da controllare");
 
+// Fino a quando la stringa o è vuota o undefined, compare un alert e mi chiede di inserire del testo
+while ((input == "") || (input == "undefined")) {
+
+  alert("Prego inserire del testo.");
+  input = prompt("inserisci il testo da controllare");
+
+}
+
+  censuratore(input, listaProibita);
+  console.log(input.length > 0);
 
 
 
-censuratore(input, listaProibita);
+
+
+
+// ss
+
+
+
+
+
 
 
 //Calcolare la media di parole censurate in base al numero di parole da controllare inserite
