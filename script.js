@@ -87,12 +87,16 @@ function censuratore(text, badwordList){
       }
       mediaCensura = contatoreCensura/textTrim.length;
 
+
     }
 
     // Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
     // .join(), transforma l'array in una stringa
     //.toLowerCase(), rende dinuvo tutta la stringa in minuscolo
     text = textTrim.join(" ").toLowerCase();
+
+    document.write(text);
+
 
     //Restituzione dell'array con le parole sostituite e censurate;
     console.log("Array parole censurate:", text);
@@ -134,6 +138,7 @@ while (penetrazion == true) {
 console.log(listaProibita);
 // Input per il controllo delle parole da censurare
 input = prompt("inserisci il testo da controllare");
+
 
 
 
