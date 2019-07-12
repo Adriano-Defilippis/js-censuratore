@@ -57,6 +57,9 @@ function replaceCharacter(word, replaceWhit){
 function censuratore(text, badwordList){
 
     var textTrim;
+    var contatoreCensura = 0;
+    var mediaCensura;
+
 
     //Trasformo tutto in maiuscolo per permettere un facile controllo
     for (var i = 0; i < badwordList.length; i++) {
@@ -68,45 +71,22 @@ function censuratore(text, badwordList){
 
     // Trasformo il testo inserito in un Array di stringhe, dove ogni stringa è una parole dell'input inserito
     textTrim = text.toUpperCase().split(" ");
-    console.log("Teseto diviso per parola ",textTrim);
+    console.log("Testo diviso per parola ",textTrim);
+
 
     //Ciclo all'interno dell'array con il mio testo input splittato
     for (var i = 0; i < textTrim.length; i++) {
-
-
-
-
-      // // Splitto la parola in un array per cercare la virgola e il punto ed eliminarla
-      // var parolaSplit = textTrim[i].split("");
-      //
-      // console.log("Array diviso per cercare punteggiatura",parolaSplit);
-      //
-      // // Ciclo all'interno della parola per cercare e sostituire la virgola ed il punto
-      // for (var i = 0; i < parolaSplit.length; i++) {
-      //
-      //   if(parolaSplit[i] === "," || parolaSplit[i] === ".") {
-      //
-      //     parolaSplit[i] = "";
-      //
-      //   }
-      // }
-      //
-      // // Restituzione della stringa senza la punteggiatura
-      // textTrim[i] = parolaSplit.join("");
-      //
-      // console.log("Parola senza la virgola: ", textTrim[i]);
-
-
-
-
 
       // Se nell'array delle parole da censurare, compare un item dell'array creato dal testo spilittato inserito dall'utente,
       // allora questo item viene sostituito con una stringa "x" a seconda della lunghezza della parola
       if (badwordList.includes(textTrim[i])) {
 
+        contatoreCensura = contatoreCensura + 1;
         //Funzione per analizzare la parola e sostituire i caratteri con un valore che passa il programmatore alla funzione
         textTrim[i] = replaceCharacter(textTrim[i], "x");
       }
+      mediaCensura = contatoreCensura/textTrim.length;
+
     }
 
     // Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
@@ -116,12 +96,16 @@ function censuratore(text, badwordList){
 
     //Restituzione dell'array con le parole sostituite e censurate;
     console.log("Array parole censurate:", text);
+
+    console.log("Numero di parole censurate: ",contatoreCensura);
+    console.log("Media delle parole censurate: ",mediaCensura);
+
 };
 
 
 
 // Esecuzine del codice
-var input, listaProibita;
+var input, listaProibita, badWordIndex;
 
 
 // Lista Parole da censurare
@@ -136,7 +120,7 @@ listaProibita = [];
 // }
 
 var penetrazion = true;
-
+// Con il ciclo while permetto l'inserimento di parole da ricercare e censuratore, a seconda di quante ne vuole inserire s
 while (penetrazion == true) {
 
    paroleinput = prompt("inserisci una parola da censurare");
@@ -154,3 +138,7 @@ input = prompt("inserisci il testo da controllare");
 
 
 censuratore(input, listaProibita);
+
+
+//Calcolare la media di parole censurate in base al numero di parole da controllare inserite
+// console.log(contatoreCensura);
