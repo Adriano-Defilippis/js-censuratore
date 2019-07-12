@@ -125,30 +125,16 @@ var input, listaProibita;
 
 
 // Lista Parole da censurare
-listaProibita = [
-  "lorem",
-  "ipsum",
-  "dolor",
-  "sit",
-  "amet",
-  "consectetur",
-  "adipiscing",
-  "elit",
-  "pellentesque",
-  "nibh",
-  "nunc",
-  "consectetur",
-  "sodales",
-  "at",
-  "rutrum",
-  "nec",
-  "massa",
-  "nunc",
-  "ullamcorper",
-  "vehicula",
-  "pretium"
-]
+listaProibita = [];
 
+
+for (var i = 0; i < 20; i++) {
+  paroleinput = prompt("inserisci una parola da censurare");
+  listaProibita.push(paroleinput);
+
+}
+
+console.log(listaProibita);
 // Input per il controllo delle parole da censurare
 input = prompt("inserisci il testo da controllare");
 
