@@ -4,35 +4,6 @@
 
 
 
-// Funzione per trovare ed eliminare il "." e la ","
-function deletePunctuation(word){
-
-  // Splitto la parola in un array
-  word = word.split("");
-
-  console.log("Array diviso per cercare punteggiatura", word);
-
-
-  for (var i = 0; i < word.length; i++) {
-
-    if(word[i] === ",") {
-
-      word[i] = "";
-
-    }
-  }
-  word = word.join("");
-
-
-  console.log("Parola senza la virgola: ", word);
-
-  return word;
-
-
-};
-
-
-
 // Funzione per sostituire ogni carattere con una un parametro che passeremo come stringa alla funzione
 function replaceCharacter(word, replaceWhit){
 // replaceWhit => un parametro stringa da passare alla funzione come tale
@@ -57,8 +28,10 @@ function replaceCharacter(word, replaceWhit){
 function censuratore(text, badwordList){
 
     var textTrim;
+    var tempStr;
     var contatoreCensura = 0;
     var mediaCensura;
+
 
 
     //Trasformo tutto in maiuscolo per permettere un facile controllo
@@ -76,6 +49,19 @@ function censuratore(text, badwordList){
 
     //Ciclo all'interno dell'array con il mio testo input splittato
     for (var i = 0; i < textTrim.length; i++) {
+      var badChar = [',','.',';',':','?','!'];
+      tempStr = textTrim[i];
+
+      for (var i = 0; i < tempStr.length; i++) {
+        console.log(tempStr[i]);
+
+        if(badChar.indexOf(tempStr[i]) > -1){
+          tempStr = tempStr.replace(tempStr[i], '');
+        }
+      }
+      textTrim[i] = tempStr;
+
+
 
       // Se nell'array delle parole da censurare, compare un item dell'array creato dal testo spilittato inserito dall'utente,
       // allora questo item viene sostituito con una stringa "x" a seconda della lunghezza della parola
@@ -84,11 +70,13 @@ function censuratore(text, badwordList){
         contatoreCensura = contatoreCensura + 1;
         //Funzione per analizzare la parola e sostituire i caratteri con un valore che passa il programmatore alla funzione
         textTrim[i] = replaceCharacter(textTrim[i], "x");
+
       }
-      mediaCensura = contatoreCensura/textTrim.length;
 
 
     }
+
+    mediaCensura = contatoreCensura/textTrim.length;
 
     // Restituisco la stringa di testo inserita precedentemente, con una stringa censurata.
     // .join(), transforma l'array in una stringa
@@ -102,7 +90,7 @@ function censuratore(text, badwordList){
     console.log("Array parole censurate:", text);
 
     console.log("Numero di parole censurate: ",contatoreCensura);
-    console.log("Media delle parole censurate: ",mediaCensura);
+    console.log("Media delle parole censurate: ",mediaCensura, "%");
 
 };
 
